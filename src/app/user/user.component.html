@@ -1,0 +1,45 @@
+<div class="container mt-4">
+<h2>Single Component: CRUD Operation's </h2>
+<hr>
+
+<table class="table table-primary">
+<thead>
+    <tr>
+        <th>UserID</th>
+        <th>UserName</th>
+        <th>Address</th>
+        <th>Action's</th>
+    </tr>
+</thead>
+<tbody> 
+    <tr *ngFor="let item of users_array">
+<td>{{item.UserId}}</td>
+<td>{{item.UserName | capitalPipe}}</td>
+<td>{{item.Address}}</td>
+<td>
+    <button (click)="EditUser(item.UserId)" class="btn btn-success">Edit</button>
+    <button (click)="DeleteUser(item.UserId,item.UserName)" class="btn btn-danger">Delete</button>
+</td>
+    </tr>
+</tbody>
+
+<tfoot> 
+    <tr>
+        <td>
+            <input type="number" [readOnly]="IsEdit" [(ngModel)]="user.UserId" placeholder="Enter ID">
+        </td>
+        <td>
+            <input type="text"  [(ngModel)]="user.UserName" placeholder="Enter Name">
+        </td>
+        <td>
+            <input type="text"  [(ngModel)]="user.Address" placeholder="Enter Address">
+        </td>
+        <td>
+            <button *ngIf="!IsEdit" class="btn btn-primary" (click)="AddUser()">Add</button>
+            <button *ngIf="IsEdit" class="btn btn-primary" (click)="UpdatedUser()">Update</button>
+        </td>
+    
+    </tr>
+</tfoot>
+</table>
+</div>
